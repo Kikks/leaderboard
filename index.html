@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <!-- external libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+
+    <title>HNGi7 Leaderboard</title>
+</head>
+<body>
+    <main class="main">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">HNGi7</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="https://github.com/Kikks" target="_blank">Github</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>    
+        </nav>
+
+        <header class="jumbotron">
+            <h1 class="display-4 text-center">HNGi7 Leaderboard</h1>
+            <hr class="my-4">
+            <p class="lead text-center">This is the leaderboard of points scores by interns in this year's internship.</p>
+        </header>
+
+        <div class="container mt-5">
+            <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Points</th>
+                  </tr>
+                </thead>
+                <tbody id = "tbody">
+                  <!-- <tr class="first">
+                    <th scope="row">1</th>
+                    <td>Okikioluwa Olufemi</td>
+                    <td>@Kikks</td>
+                    <td>17</td>
+                  </tr>
+                  <tr class="second">
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr class="third">
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr> -->
+                </tbody>
+              </table>
+        </div>
+    </main>    
+</body>
+
+<script>
+
+    let interns = []
+
+    axios.get('../../interns.json')
+    .then(response => {
+        interns = response.data
+        const sortedInterns = interns.sort((a, b) => b.points - a.points )
+        console.log(sortedInterns);
+
+        const internsList = sortedInterns.map((intern, id) => {
+            const th = document.createElement('th')
+            th.appendChild(document.createTextNode(id + 1))
+            th.className = "row"
+
+            const td = document.createElement('td')
+            td.appendChild(document.createTextNode(intern.fullname))
+
+            const td1 = document.createElement('td')
+            td1.appendChild(document.createTextNode(intern.username))
+
+            const td2 = document.createElement('td')
+            td2.appendChild(document.createTextNode(intern.points))
+
+            const tr = document.createElement('tr')
+
+            const documentFragment = document.createDocumentFragment()
+            documentFragment.appendChild(tr)
+            tr.appendChild(th)
+            tr.appendChild(td)
+            tr.appendChild(td1)
+            tr.appendChild(td2)
+
+            document.getElementById('tbody').appendChild(documentFragment)
+            
+        })
+    })
+    
+    
+    
+
+</script>
+
+
+</html>

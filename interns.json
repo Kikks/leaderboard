@@ -1,0 +1,102 @@
+[
+	{
+		"fullname" : "John Peters",
+		"username" : "@johnny",
+		"points" : 3
+	},
+	{
+		"fullname" : "Elizabeth Mcknight",
+		"username" : "@lizzy",
+		"points" : 1
+	},
+	{
+		"fullname" : "Ayomide Oluremi",
+		"username" : "@aylife",
+		"points" : 14
+	},
+	{
+		"fullname" : "Peter Elliot",
+		"username" : "@itzpitty",
+		"points" : 19
+	},
+	{
+		"fullname" : "Esther Adewunmi",
+		"username" : "@esther",
+		"points" : 37
+	},
+	{
+		"fullname" : "Doyinsola Akili",
+		"username" : "@dbaby",
+		"points" : 22
+	},
+	{
+		"fullname" : "David David",
+		"username" : "@dayguy",
+		"points" : 4
+	},
+	{
+		"fullname" : "Matthew King",
+		"username" : "@matty",
+		"points" : 31
+	},
+	{
+		"fullname" : "Justin Michaels",
+		"username" : "@justy",
+		"points" : 23
+	},
+	{
+		"fullname" : "Olukayode Adesokan",
+		"username" : "@kaywise",
+		"points" : 2
+	},
+	{
+		"fullname" : "Olufemi Daniels",
+		"username" : "@dannilo",
+		"points" : 33
+	},
+	{
+		"fullname" : "Israel Kayode",
+		"username" : "@israel",
+		"points" : 5
+	},
+	{
+		"fullname" : "James Nnagi",
+		"username" : "@jaystormz",
+		"points" : 40
+	},
+	{
+		"fullname" : "Akin Lazarus",
+		"username" : "@akin",
+		"points" : 10
+	},
+	{
+		"fullname" : "Moses Falaye",
+		"username" : "@mosy",
+		"points" : 49
+	},
+	{
+		"fullname" : "Faridah Ibrahim",
+		"username" : "@farize",
+		"points" : 11
+	},
+	{
+		"fullname" : "Busayo Tobiloba",
+		"username" : "@bussy",
+		"points" : 36
+	},
+	{
+		"fullname" : "Farouk Lawal",
+		"username" : "@lawanski",
+		"points" : 19
+	},
+	{
+		"fullname" : "Precious Ajose",
+		"username" : "@preshy",
+		"points" : 42
+	},
+	{
+		"fullname" : "Bayo Collins",
+		"username" : "@bboy",
+		"points" : 28
+	}
+]
