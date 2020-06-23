@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <!-- external libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <title>HNGi7 Leaderboard | Position</title>
+</head>
+<body>
+    <main class="main">
+        <div class="container center">
+            <div class="card">
+                <figure class="figure" id="figure">
+
+                </figure>
+                <img class="card-img-top img" src="./assets/img/hng.jpg" alt="Card image cap">
+                <div class="card-body text-center">
+                  <h5 class="card-title" id="cardTitle"></h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item text-center" id="username"></li>
+                  <li class="list-group-item text-center" id="points"></li>
+                  <li class="list-group-item text-center" id="position"></li>
+                </ul>
+                <div class="card-body text-center">
+                    <ul class="list-group center">
+                        <li class="list-group-item li">
+                            <ul class="list-group list-group-horizontal" >
+                                <li class="list-group-item">
+                                    <a id="mail">
+                                        <img class = "social" src="./assets/img/email.png" alt="Email" />
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a id="facebook" target="_blank">
+                                        <img class = "social" src="./assets/img/facebook.png" alt="Facebook" />
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a id="twitter" href="https://twitter.com/share?url=https://simplesharebuttons.com&amp;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons" target="_blank">
+                                        <img class = "social" src="./assets/img/twitter.png" alt="Twitter" />
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="javascript:;" onclick="window.print()">
+                                        <img class = "social" src="./assets/img/print.png" alt="Print" />
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="javascript:;" onclick="copyLink()">
+                                        <img class = "social" src="./assets/svg/link.svg" alt="Copy Link" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>  
+                </div>
+              </div>
+        </div>
+    </main>
+</body>
+
+<script>
+    const internName = window.location.href.split(':')[3].replace(/%20/, " ")
+    
+    axios.get('./interns.json')
+    .then(response => {
+        const internDetails = response.data
+        const sortedInternDetails = internDetails.sort((a, b) => b.points - a.points )
+
+
+        sortedInternDetails.map((intern, id) => {
+            if(intern.fullname === internName){
+                document.getElementById('cardTitle').appendChild(document.createTextNode(intern.fullname))
+                document.getElementById('username').appendChild(document.createTextNode("Username: " + intern.username))
+                document.getElementById('points').appendChild(document.createTextNode("Points: " + intern.points))
+                document.getElementById('position').appendChild(document.createTextNode("Position: " + (id + 1)))               
+                
+                const img = document.createElement('img')
+                const figure = document.getElementById('figure')
+                
+                if(id == 0){
+                    img.src = './assets/img/gold.png'
+                }else if(id == 1){
+                    img.src = './assets/img/silver.png'
+                } else if(id == 2){
+                    img.src = './assets/img/bronze.png'
+                }
+
+                figure.appendChild(img)
+            }
+        })
+
+        const url = window.location.href 
+
+        document.getElementById('mail').href = "mailto:?Subject=Simple Share Buttons&amp;Body=Check%20my%20grade%20out! " + url
+        document.getElementById('facebook').href = "http://www.facebook.com/sharer.php?u=" + url
+        document.getElementById('twitter').href = "https://twitter.com/share?url=" + url + "&amp;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons"
+    })
+
+    copyLink = () => {
+
+        const dummy = document.createElement('input'),
+        text = window.location.href;
+        document.body.appendChild(dummy);
+        dummy.value = text;
+        dummy.select();
+        document.execCommand('copy');
+        document.body.removeChild(dummy);
+        alert('Link copied! You can now go to your social media platform and post your position.');
+    }
+
+</script>
+</html>

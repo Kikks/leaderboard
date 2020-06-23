@@ -12,15 +12,14 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
 
-    <title>HNGi7 Leaderboard</title>
+    <title>HNGi7 Leaderboard | Home</title>
 </head>
 <body>
-    <main class="main">
+    <main>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="/">HNGi7</a>
+                <a class="navbar-brand" href="#">HNGi7</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
@@ -49,45 +48,11 @@
                     <th scope="col">Name</th>
                     <th scope="col">Username</th>
                     <th scope="col">Points</th>
+                    <th cope="col">Share</th>
                   </tr>
                 </thead>
                 <tbody id = "tbody">
-                  <!-- <tr class="first">
-                    <th scope="row">1</th>
-                    <td>Okikioluwa Olufemi</td>
-                    <td>@Kikks</td>
-                    <td>17</td>
-                  </tr>
-                  <tr class="second">
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr class="third">
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                  </tr> -->
+                  
                 </tbody>
               </table>
         </div>
@@ -98,11 +63,11 @@
 
     let interns = []
 
-    axios.get('../../interns.json')
+    axios.get('./interns.json')
     .then(response => {
         interns = response.data
         const sortedInterns = interns.sort((a, b) => b.points - a.points )
-        console.log(sortedInterns);
+
 
         const internsList = sortedInterns.map((intern, id) => {
             const th = document.createElement('th')
@@ -118,7 +83,22 @@
             const td2 = document.createElement('td')
             td2.appendChild(document.createTextNode(intern.points))
 
+            const img = document.createElement('img')
+            img.src = "./assets/svg/share.svg"
+            img.className = "svg"
+
+            const a = document.createElement('a')
+            a.href = `./position.html?name:${intern.fullname}`
+            a.className = "svg__link"
+            a.appendChild(img)
+            
+
+            const td3 = document.createElement('td')
+            td3.appendChild(a)
+            
+
             const tr = document.createElement('tr')
+            tr.className = "tableRow"
 
             const documentFragment = document.createDocumentFragment()
             documentFragment.appendChild(tr)
@@ -126,9 +106,13 @@
             tr.appendChild(td)
             tr.appendChild(td1)
             tr.appendChild(td2)
+            tr.appendChild(td3)
 
             document.getElementById('tbody').appendChild(documentFragment)
             
+            
+
+            console.log(intern.fullname.concat(''));
         })
     })
     
