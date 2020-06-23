@@ -19,7 +19,7 @@ This application helps you sort users according to points by fetching users from
 
 "username": "username1",
 
-"point": $ ///// the number should be without quotes
+"point": "20 ///// the number should be without quotes"
 
 },
 
@@ -29,7 +29,7 @@ This application helps you sort users according to points by fetching users from
 
 "username": "username2",
 
-"point": $ ///// the number should be without quotes
+"point": "45 ///// the number should be without quotes"
 
 },
 
