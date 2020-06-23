@@ -70,7 +70,7 @@
 </body>
 
 <script>
-    const internName = window.location.href.split(':')[3].replace(/%20/, " ")
+    const internName = window.location.href.split(':')[window.location.href.split(':').length - 1].replace(/%20/, " ")
     
     axios.get('./interns.json')
     .then(response => {
